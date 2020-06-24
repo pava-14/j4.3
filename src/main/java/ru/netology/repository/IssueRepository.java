@@ -20,4 +20,14 @@ public class IssueRepository {
         return issues.remove(item);
     }
 
+    public boolean update(int id, boolean closed) {
+        boolean result = false;
+        for (Issue issue : issues) {
+            if (issue.getId() == id) {
+                issue.setClosed(closed);
+                result = true;
+            }
+        }
+        return result;
+    }
 }

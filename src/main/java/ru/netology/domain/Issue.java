@@ -18,3 +18,4 @@ public class Issue {
     private Set<String> assignee;
     private boolean closed;
 }
+

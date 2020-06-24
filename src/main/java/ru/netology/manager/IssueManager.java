@@ -4,25 +4,69 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.netology.domain.Issue;
+import ru.netology.domain.IssueByIdComparator;
+import ru.netology.domain.IssuePredicates;
 import ru.netology.repository.IssueRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class IssueManager {
-    private IssueRepository repository;
+    private IssueRepository repository = new IssueRepository();
 
     public boolean addIssue(Issue issue) {
         return repository.add(issue);
     }
 
+    public List<Issue> getAll() {
+        return repository.getAll();
+    }
+
     public List<Issue> getClosedIssues() {
-        return null;
+        List<Issue> result = new ArrayList<>();
+        for (Issue issue : repository.getAll()) {
+            if (issue.isClosed()) {
+                result.add(issue);
+            }
+        }
+        result.sort(new IssueByIdComparator());
+        return result;
     }
 
     public List<Issue> getOpenIssues() {
-        return null;
+        List<Issue> result = new ArrayList<>();
+        for (Issue issue : repository.getAll()) {
+            if (!issue.isClosed()) {
+                result.add(issue);
+            }
+        }
+        result.sort(new IssueByIdComparator());
+        return result;
+    }
+
+    public List<Issue> filterByAuthor(String author) {
+        return repository.getAll().stream()
+                .filter(IssuePredicates.filterByAuthor(author))
+                .collect(Collectors.toList());
+    }
+
+    public List<Issue> filterByLabel(String label) {
+        return repository.getAll().stream()
+                .filter(IssuePredicates.filterByLabel(label))
+                .collect(Collectors.toList());
+    }
+
+    public List<Issue> filterByAssignee(String assignee) {
+        return repository.getAll().stream()
+                .filter(IssuePredicates.filterByAssignee(assignee))
+                .collect(Collectors.toList());
+    }
+
+    public void setIssueStatus(int id, boolean closed) {
+        boolean result = repository.update(id, closed);
     }
 }
