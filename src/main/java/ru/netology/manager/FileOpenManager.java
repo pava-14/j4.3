@@ -1,6 +1,7 @@
 package ru.netology.manager;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,9 +30,8 @@ public class FileOpenManager {
 
     public void unregisterExt(String ext) {
         if (extdata.containsKey(makeExtCase(ext))) {
-            return;
+            extdata.remove(ext);
         }
-        extdata.remove(ext);
     }
 
     public List<String> getAllExt() {
