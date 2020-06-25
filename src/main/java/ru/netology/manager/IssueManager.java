@@ -25,10 +25,10 @@ public class IssueManager {
         return repository.getAll();
     }
 
-    public List<Issue> getClosedIssues() {
+    private List<Issue> getIssueByStatus(boolean isClosed) {
         List<Issue> result = new ArrayList<>();
         for (Issue issue : repository.getAll()) {
-            if (issue.isClosed()) {
+            if (issue.isClosed() == isClosed) {
                 result.add(issue);
             }
         }
@@ -36,15 +36,12 @@ public class IssueManager {
         return result;
     }
 
+    public List<Issue> getClosedIssues() {
+        return getIssueByStatus(true);
+    }
+
     public List<Issue> getOpenIssues() {
-        List<Issue> result = new ArrayList<>();
-        for (Issue issue : repository.getAll()) {
-            if (!issue.isClosed()) {
-                result.add(issue);
-            }
-        }
-        result.sort(new IssueByIdComparator());
-        return result;
+        return getIssueByStatus(false);
     }
 
     public List<Issue> filterByAuthor(String author) {
