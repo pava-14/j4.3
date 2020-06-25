@@ -1,7 +1,6 @@
 package ru.netology.manager;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,6 +13,7 @@ public class FileOpenManager {
     private Map<String, String> extdata;
 
     private String makeExtCase(String ext) {
+
         return ext.toLowerCase();
     }
 
