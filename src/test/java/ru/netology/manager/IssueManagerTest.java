@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.netology.domain.Issue;
 import ru.netology.repository.IssueRepository;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -44,65 +44,45 @@ class IssueManagerTest {
 
     @Test
     void shouldAddIssue() {
-        List<Issue> expected = new ArrayList<>();
-        expected.add(issue1);
-        expected.add(issue2);
-        expected.add(issue3);
-        expected.add(issue4);
-        expected.add(issue5);
-
+        List<Issue> expected = Arrays.asList(issue1, issue2, issue3, issue4, issue5);
         manager.addIssue(issue5);
         assertEquals(expected, manager.getAll());
     }
 
     @Test
     void shouldGetOpenIssues() {
-        List<Issue> expected = new ArrayList<>();
-        expected.add(issue1);
-        expected.add(issue3);
-
+        List<Issue> expected = Arrays.asList(issue1, issue3);
         assertEquals(expected, manager.getOpenIssues());
     }
 
     @Test
     void shouldGetClosedIssues() {
-        List<Issue> expected = new ArrayList<>();
-        expected.add(issue2);
-        expected.add(issue4);
+        List<Issue> expected = Arrays.asList(issue2, issue4);
         assertEquals(expected, manager.getClosedIssues());
     }
 
     @Test
     void shouldFilterByAuthor() {
-        List<Issue> expected = new ArrayList<>();
-        expected.add(issue1);
-        expected.add(issue4);
+        List<Issue> expected = Arrays.asList(issue1, issue4);
         assertEquals(expected, manager.filterByAuthor("sam"));
     }
 
     @Test
     void filterByLabel() {
-        List<Issue> expected = new ArrayList<>();
-        expected.add(issue2);
-        expected.add(issue3);
+        List<Issue> expected = Arrays.asList(issue2, issue3);
         assertEquals(expected, manager.filterByLabel(label2.toString()));
     }
 
     @Test
     void filterByAssignee() {
-        List<Issue> expected = new ArrayList<>();
+        List<Issue> expected = Arrays.asList(issue3, issue4);
         String assignee = "smith";
-        expected.add(issue3);
-        expected.add(issue4);
         assertEquals(expected, manager.filterByAssignee(assignee));
     }
 
     @Test
     void setIssueStatus() {
-        List<Issue> expected = new ArrayList<>();
-        expected.add(issue1);
-        expected.add(issue2);
-        expected.add(issue4);
+        List<Issue> expected = Arrays.asList(issue1, issue2, issue4);
         manager.setIssueStatus(1, true);
         assertEquals(expected, manager.getClosedIssues());
     }
