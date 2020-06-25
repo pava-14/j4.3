@@ -8,13 +8,14 @@ import ru.netology.domain.IssuePredicates;
 import ru.netology.repository.IssueRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
 public class IssueManager {
-    private IssueRepository repository = new IssueRepository();
+    private IssueRepository repository;
 
     public boolean addIssue(Issue issue) {
         return repository.add(issue);
@@ -52,15 +53,15 @@ public class IssueManager {
                 .collect(Collectors.toList());
     }
 
-    public List<Issue> filterByLabel(String label) {
+    public List<Issue> filterByAssignee(String assignee) {
         return repository.getAll().stream()
-                .filter(IssuePredicates.filterByLabel(label))
+                .filter(IssuePredicates.filterByLabel(assignee))
                 .collect(Collectors.toList());
     }
 
-    public List<Issue> filterByAssignee(String assignee) {
+    public List<Issue> filterByLabel(String label) {
         return repository.getAll().stream()
-                .filter(IssuePredicates.filterByAssignee(assignee))
+                .filter(IssuePredicates.filterByAssignee(label))
                 .collect(Collectors.toList());
     }
 

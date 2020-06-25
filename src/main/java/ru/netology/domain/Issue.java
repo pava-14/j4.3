@@ -17,7 +17,7 @@ public class Issue {
     private Set<String> label;
     private String projects;
     private String milestones;
-    private Set<String> assignee;
+    private String assignee;
     private boolean closed;
 }
 
