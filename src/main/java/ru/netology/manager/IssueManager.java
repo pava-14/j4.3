@@ -8,7 +8,6 @@ import ru.netology.domain.IssuePredicates;
 import ru.netology.repository.IssueRepository;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,6 +62,6 @@ public class IssueManager {
     }
 
     public void setIssueStatus(int id, boolean closed) {
-        boolean result = repository.update(id, closed);
+        repository.update(id, closed);
     }
 }
