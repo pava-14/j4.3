@@ -51,13 +51,13 @@ public class IssueManager {
 
     public List<Issue> filterByAssignee(String assignee) {
         return repository.getAll().stream()
-                .filter(IssuePredicates.filterByLabel(assignee))
+                .filter(IssuePredicates.filterByAssignee(assignee))
                 .collect(Collectors.toList());
     }
 
     public List<Issue> filterByLabel(String label) {
         return repository.getAll().stream()
-                .filter(IssuePredicates.filterByAssignee(label))
+                .filter(IssuePredicates.filterByLabel(label))
                 .collect(Collectors.toList());
     }
 
