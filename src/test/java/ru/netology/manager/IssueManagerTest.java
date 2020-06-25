@@ -4,10 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Issue;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -38,11 +35,11 @@ class IssueManagerTest {
         assignee2.add("vesson");
         assignee2.add("dolly");
 
-        issue1 = new Issue(1, "sam", label1, "project one", "2.0.0.1", assignee1, false);
-        issue2 = new Issue(2, "ronny", label2, "project two", "2.0.0.1", assignee1, true);
-        issue3 = new Issue(3, "lisa", label2, "project one", "2.0.0.1", assignee2, false);
-        issue4 = new Issue(4, "sam", label1, "project two", "2.0.0.1", assignee2, true);
-        issue5 = new Issue(5, "ronny", label1, "project one", "2.0.0.1", assignee2, true);
+        issue1 = new Issue(1, new Date(1592619357), "sam", label1, "project one", "2.0.0.1", assignee1, false);
+        issue2 = new Issue(2, new Date(1592705757), "ronny", label2, "project two", "2.0.0.1", assignee1, true);
+        issue3 = new Issue(3, new Date(1592741757),"lisa", label2, "project one", "2.0.0.1", assignee2, false);
+        issue4 = new Issue(4, new Date(1592828157),"sam", label1, "project two", "2.0.0.1", assignee2, true);
+        issue5 = new Issue(5, new Date(1593105357),"ronny", label1, "project one", "2.0.0.1", assignee2, true);
 
         manager.addIssue(issue1);
         manager.addIssue(issue2);

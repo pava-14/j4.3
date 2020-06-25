@@ -2,7 +2,6 @@ package ru.netology.manager;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import ru.netology.domain.Issue;
 import ru.netology.domain.IssueByIdComparator;
 import ru.netology.domain.IssuePredicates;
@@ -14,7 +13,6 @@ import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class IssueManager {
     private IssueRepository repository = new IssueRepository();
 

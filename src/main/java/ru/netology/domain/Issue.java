@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.Set;
 
 @Data
@@ -11,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class Issue {
     private int id;
+    private Date date;
     private String author;
     private Set<String> label;
     private String projects;
