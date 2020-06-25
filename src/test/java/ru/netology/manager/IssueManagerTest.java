@@ -5,15 +5,18 @@ import org.junit.jupiter.api.Test;
 import ru.netology.domain.Issue;
 import ru.netology.repository.IssueRepository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class IssueManagerTest {
 
     private IssueManager manager = new IssueManager(new IssueRepository());
-    private Set<String> label1 = new HashSet<>();
-    private Set<String> label2 = new HashSet<>();
+    private Set<String> label1 = Set.of("component: jupiter", "status: in progress", "theme: build");
+    private Set<String> label2 = Set.of("component: kotlin", "status: invalid");
     private String assignee2 = "cartman";
     private String assignee3 = "smith";
     private String assignee4 = "vesson";
@@ -27,13 +30,7 @@ class IssueManagerTest {
 
     @BeforeEach
     public void setUp() {
-        label1.add("component: jupiter");
-        label1.add("status: in progress");
-        label1.add("theme: build");
-        label2.add("component: kotlin");
-        label2.add("status: invalid");
-
-        issue1 = new Issue(1, new Date(1592619357), "sam", label1, "project one", "2.0.0.1", assignee1, false);
+        issue1 = new Issue(1, new Date(1592648107), "sam", label1, "project one", "2.0.0.1", assignee1, false);
         issue2 = new Issue(2, new Date(1592705757), "ronny", label2, "project two", "2.0.0.1", assignee2, true);
         issue3 = new Issue(3, new Date(1592741757), "lisa", label2, "project one", "2.0.0.1", assignee3, false);
         issue4 = new Issue(4, new Date(1592828157), "sam", label1, "project two", "2.0.0.1", assignee4, true);
