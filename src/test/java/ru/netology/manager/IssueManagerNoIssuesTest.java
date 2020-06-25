@@ -32,40 +32,34 @@ class IssueManagerNoIssuesTest {
 
     @Test
     void shouldGetOpenIssues() {
-        List<Issue> expected = Arrays.asList();
-        assertEquals(expected, manager.getOpenIssues());
+        assertEquals(0, manager.getOpenIssues().size());
     }
 
     @Test
     void shouldGetClosedIssues() {
-        List<Issue> expected = Arrays.asList();
-        assertEquals(expected, manager.getClosedIssues());
+        assertEquals(0, manager.getClosedIssues().size());
     }
 
     @Test
     void shouldFilterByAuthor() {
-        List<Issue> expected = Arrays.asList();
-        assertEquals(expected, manager.filterByAuthor("sam"));
+        assertEquals(0, manager.filterByAuthor("sam").size());
     }
 
     @Test
     void filterByLabel() {
-        List<Issue> expected = Arrays.asList();
         String label = "status: invalid";
-        assertEquals(expected, manager.filterByLabel(label));
+        assertEquals(0, manager.filterByLabel(label).size());
     }
 
     @Test
     void filterByAssignee() {
-        List<Issue> expected = Arrays.asList();
         String assignee = "smith";
-        assertEquals(expected, manager.filterByAssignee(assignee));
+        assertEquals(0, manager.filterByAssignee(assignee).size());
     }
 
     @Test
     void setIssueStatus() {
-        List<Issue> expected = Arrays.asList();
         manager.setIssueStatus(1, true);
-        assertEquals(expected, manager.getClosedIssues());
+        assertEquals(0, manager.getClosedIssues().size());
     }
 }
