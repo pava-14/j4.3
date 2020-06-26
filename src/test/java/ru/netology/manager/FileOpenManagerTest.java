@@ -49,15 +49,36 @@ class FileOpenManagerTest {
     }
 
     @Test
+
+    public void shouldRegisterExtUpperCaseIfExists() {
+        manager.registerExt(".TXT", "Notepad");
+        List<String> expected = Arrays.asList(".docx", ".pdf", ".txt", ".xlsx");
+        assertEquals(expected, manager.getAllExt());
+    }
+
+    @Test
     public void shouldGetAppByExt() {
         String expected = "Microsoft Word";
         assertTrue(expected.equalsIgnoreCase(manager.getAppByExt(".docx")));
     }
 
     @Test
+    public void shouldGetAppByExtUpperCase() {
+        String expected = "Microsoft Word";
+        assertTrue(expected.equalsIgnoreCase(manager.getAppByExt(".DOCX")));
+    }
+
+    @Test
     public void shouldUnregisterExtIfExixsts() {
         List<String> expected = Arrays.asList(".pdf", ".xlsx");
         manager.unregisterExt(".docx");
+        assertEquals(expected, manager.getAllExt());
+    }
+
+    @Test
+    public void shouldUnregisterExtUpperCaseIfExixsts() {
+        List<String> expected = Arrays.asList(".pdf", ".xlsx");
+        manager.unregisterExt(".DOCX");
         assertEquals(expected, manager.getAllExt());
     }
 
