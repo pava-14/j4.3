@@ -18,10 +18,11 @@ public class FileOpenManager {
     }
 
     public void registerExt(String ext, String app) {
-        if (extdata.containsKey(makeExtCase(ext))) {
+        String extToAdd = makeExtCase(ext);
+        if (extdata.containsKey(extToAdd)) {
             return;
         }
-        extdata.put(ext, app);
+        extdata.put(extToAdd, app);
     }
 
     public String getAppByExt(String ext) {
@@ -29,9 +30,7 @@ public class FileOpenManager {
     }
 
     public void unregisterExt(String ext) {
-        if (extdata.containsKey(makeExtCase(ext))) {
-            extdata.remove(ext);
-        }
+        extdata.remove(makeExtCase(ext));
     }
 
     public List<String> getAllExt() {
