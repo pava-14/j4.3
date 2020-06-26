@@ -13,7 +13,6 @@ public class FileOpenManager {
     private Map<String, String> extdata;
 
     private String makeExtCase(String ext) {
-
         return ext.toLowerCase();
     }
 

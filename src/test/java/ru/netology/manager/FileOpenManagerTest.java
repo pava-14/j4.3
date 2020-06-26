@@ -49,7 +49,6 @@ class FileOpenManagerTest {
     }
 
     @Test
-
     public void shouldRegisterExtUpperCaseIfExists() {
         manager.registerExt(".TXT", "Notepad");
         List<String> expected = Arrays.asList(".docx", ".pdf", ".txt", ".xlsx");
