@@ -3,8 +3,6 @@ package ru.netology.manager;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import ru.netology.domain.Issue;
-import ru.netology.domain.IssueByIdComparator;
-import ru.netology.domain.IssuePredicates;
 import ru.netology.repository.IssueRepository;
 
 import java.util.ArrayList;
@@ -31,7 +29,7 @@ public class IssueManager {
                 result.add(issue);
             }
         }
-        result.sort(new IssueByIdComparator());
+        result.sort((o1, o2) -> o1.getId() - o2.getId());
         return result;
     }
 
@@ -45,19 +43,19 @@ public class IssueManager {
 
     public List<Issue> filterByAuthor(String author) {
         return repository.getAll().stream()
-                .filter(IssuePredicates.filterByAuthor(author))
+                .filter((p) -> p.getAuthor().equalsIgnoreCase(author))
                 .collect(Collectors.toList());
     }
 
     public List<Issue> filterByAssignee(String assignee) {
         return repository.getAll().stream()
-                .filter(IssuePredicates.filterByAssignee(assignee))
+                .filter((p) -> p.getAssignee().equalsIgnoreCase(assignee))
                 .collect(Collectors.toList());
     }
 
     public List<Issue> filterByLabel(String label) {
         return repository.getAll().stream()
-                .filter(IssuePredicates.filterByLabel(label))
+                .filter((p) -> p.getLabel().contains(label))
                 .collect(Collectors.toList());
     }
 
